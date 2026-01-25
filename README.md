@@ -1,3 +1,104 @@
+# Laravel Blog Project
+
+> Blog application with authentication, REST API, and GitHub OAuth integration
+
+## 🚀 Features
+
+- ✅ Complete CRUD for posts
+- ✅ User authentication (login/register/logout)
+- ✅ GitHub OAuth login
+- ✅ REST API for post management
+- ✅ User and post relationships
+- ✅ Responsive design with Bootstrap 5
+- ✅ Form validation
+
+## 📋 Requirements
+
+- PHP 8.2+
+- Composer
+- MySQL
+- Node.js & NPM
+
+## ⚙️ Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/YOUR_USERNAME/blog-laravel.git
+cd blog-laravel
+```
+
+2. Install dependencies:
+```bash
+composer install
+npm install
+```
+
+3. Copy and configure `.env`:
+```bash
+cp .env.example .env
+```
+
+Update database credentials:
+```env
+DB_DATABASE=blog
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+4. Generate key and run migrations:
+```bash
+php artisan key:generate
+php artisan migrate:fresh --seed
+```
+
+5. Compile assets and start server:
+```bash
+npm run dev
+php artisan serve
+```
+
+Visit: `http://localhost:8000`
+
+## 🔐 GitHub OAuth Setup (Optional)
+
+1. Create OAuth App: https://github.com/settings/developers
+2. Add to `.env`:
+```env
+GITHUB_CLIENT_ID=your_client_id
+GITHUB_CLIENT_SECRET=your_client_secret
+GITHUB_REDIRECT_URL=http://localhost:8000/auth/github/callback
+```
+
+## 📡 REST API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/posts` | List all posts |
+| GET | `/api/posts/{id}` | View a post |
+| POST | `/api/posts` | Create post |
+| PUT | `/api/posts/{id}` | Update post |
+| DELETE | `/api/posts/{id}` | Delete post |
+
+### Example POST Request:
+```json
+{
+  "titol": "My First Post",
+  "contingut": "This is the content of my post.",
+  "usuari_id": 1
+}
+```
+
+## 🛠️ Technologies
+
+- Laravel 12
+- Bootstrap 5
+- MySQL
+- Laravel Socialite (GitHub OAuth)
+- Blade Templates
+- Vite
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

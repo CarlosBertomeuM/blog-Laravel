@@ -23,13 +23,36 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $login = fake()->unique()->userName();
+        
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'login' => $login,
+            'password' => bcrypt($login), // Ara amb bcrypt
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
+    }
+
+    public function showRegister()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'login' => 'required|unique:users|min:3',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'login' => $request->login,
+            'password' => bcrypt($request->password),
+        ]);
+
+        Auth::login($user);
+        
+        return redirect()->route('posts.index');
     }
 
     /**
